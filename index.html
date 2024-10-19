@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrations</title>
+</head>
+<body>
+    <h1>Registrations</h1>
+    <a href="{{ url_for('create') }}">Add New Registration</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date of Birth</th>
+            <th>Registration Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for registration in registrations %}
+        <tr>
+            <td>{{ registration.ID }}</td>
+            <td>{{ registration.Name }}</td>
+            <td>{{ registration.Email }}</td>
+            <td>{{ registration.DateOfBirth }}</td>
+            <td>{{ registration.RegistrationDate }}</td>
+            <td>
+                <a href="{{ url_for('update', id=registration.ID) }}">Edit</a>
+                <form action="{{ url_for('delete', id=registration.ID) }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form> 
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
